@@ -167,5 +167,7 @@ Pair * firstTreeMap(TreeMap * tree) {
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
-    return NULL;
+    TreeNode *ret = minimum(tree->current->right);
+    tree->current = ret;
+    return ret->pair;
 }
