@@ -185,5 +185,6 @@ Pair * nextTreeMap(TreeMap * tree) {
         tree->current = ret;
     }
 
-    return ret->pair;
+    if (ret) return ret->pair;
+    else return NULL;
 }
