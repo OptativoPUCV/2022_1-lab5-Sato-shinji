@@ -179,6 +179,7 @@ Pair * nextTreeMap(TreeMap * tree) {
         ret = tree->current->parent;
         while(tree->lower_than(tree->current->pair->key, ret->pair->key) && ret->parent)
         {
+            tree->current = ret;
             ret = ret->parent;
         }
         tree->current = ret;
