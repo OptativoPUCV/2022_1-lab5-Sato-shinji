@@ -118,3 +118,13 @@ Mon Apr 25 00:37:06 HSP 2022:
  1 file changed, 1 insertion(+), 1 deletion(-)
  tests:  0|0
 cba369c
+Mon Apr 25 00:46:10 HSP 2022: 
+ treemap.c | 20 +++++++++++++++++---
+ 1 file changed, 17 insertions(+), 3 deletions(-)
+In file included from test.c:4:0:
+treemap.c: In function 'nextTreeMap':
+treemap.c:188:1: error: expected ';' before '}' token
+ }
+ ^
+Compilation failed
+3230722

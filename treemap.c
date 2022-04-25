@@ -167,8 +167,22 @@ Pair * firstTreeMap(TreeMap * tree) {
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
-    if(!tree->current) return NULL;
-    TreeNode *ret = minimum(tree->current->right);
-    tree->current = ret;
-    return ret->pair;
+    TreeNode *ret = NULL;
+
+    if(tree->current->right)
+    {
+        ret = minimum(tree->current->right);
+        tree->current = ret;
+    }
+    else
+    {
+        ret = tree->current->parent;
+        while(tree->lower_than(tree->current->pair->key, ret->pair->key) && ret->parent)
+        {
+            ret = ret->parent;
+        }
+        tree->current = ret;
+    }
+
+    return ret->pair
 }
