@@ -79,9 +79,49 @@ TreeNode * minimum(TreeNode * x){
     return x;
 }
 
+void reemplazarNodo(TreeMap *tree, TreeNode *old, TreeNode *new)
+{
+    if(old->parent)
+    {
+        if(is_equal(tree, old->parent->left->pair->key, old->pair->key))
+            old->parent->left = new;
+        else old->parent->right = new;
+    }
+    else tree->root = new;
+
+    if(new) new->parent = old->parent;
+}
 
 void removeNode(TreeMap * tree, TreeNode* node) {
+    TreeNode *aux = NULL;
 
+    if(!node->left)
+    {
+        reemplazarNodo(tree, node, node->right);
+    }
+    else
+    {
+        if(!node->right)
+        {
+            reemplazarNodo(tree, node, node->left);
+        }
+        else
+        {
+            aux = minimum(node->right);
+            //Si el nodo derecho de aux no es el hijo del nodo a eliminar
+            if(!is_equal(tree, aux->parent->pair->key, node->pair->key))
+            {
+                reemplazarNodo(tree, aux, aux->right);
+                aux->right = node->right;
+                aux->right->parent = aux;               
+            }
+            reemplazarNodo(tree, node, aux);
+            aux->left = node->left;
+            aux->left->parent = aux;
+        }
+    }
+
+    free(node);
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
